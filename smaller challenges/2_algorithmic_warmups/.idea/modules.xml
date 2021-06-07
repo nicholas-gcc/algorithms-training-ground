@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/maximum_pairwise_product.iml" filepath="$PROJECT_DIR$/maximum_pairwise_product.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2_algorithmic_warmups.iml" filepath="$PROJECT_DIR$/2_algorithmic_warmups.iml" />
     </modules>
   </component>
 </project>
