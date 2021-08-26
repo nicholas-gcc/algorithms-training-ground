@@ -17,12 +17,53 @@ public class FibonacciHuge {
         return current % m;
     }
 
+    private static long getPisanoPeriod(long m) {
+        long pisanoPeriod = 0;
+        long curr = 1;
+        long prev = 0;
+        for (int i = 0; i < m * m; i++) {
+            long temp = 0;
+            temp = curr;
+            curr = (prev + curr) % m;
+            prev = temp;
+
+            if (prev == 0 && curr == 1) {
+                pisanoPeriod = i + 1;
+            }
+        }
+        return pisanoPeriod;
+    }
+
+    private static long getFibonacciPisano(long n, long m) {
+        if (n <= 1) {
+            return n;
+        }
+
+        long pisanoPeriod = getPisanoPeriod(m);
+        long remainderN = n % pisanoPeriod;
+        if (remainderN <= 1) {
+            return remainderN;
+        }
+
+        long prev = 0;
+        long curr = 1;
+        // remainderN < m, don't bother checking beyond Fm, where m > remainderN
+        // e.g. F2015 mod 3 = F7 mod 3 = 1. m = 2015 > remainderN = 7
+        for (long i = 0; i < remainderN - 1; i++) {
+            long temp;
+            temp = curr;
+            curr = (int)((prev + curr) % m);
+            prev = temp;
+        }
+        return curr;
+    }
+
     
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         long n = scanner.nextLong();
         long m = scanner.nextLong();
-        System.out.println(getFibonacciHugeNaive(n, m));
+        System.out.println(getFibonacciPisano(n, m));
     }
 }
 
